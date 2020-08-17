@@ -6,18 +6,18 @@ pipeline{
     agent any
     stages{
         stage('Linting'){
-            step{
+            steps{
                 sh 'hadolint Dockerfile'
                 sh 'pylint --disable=R,C,W1203 app.py'
             }
         }
         stage('Build Docker Image'){
-            step{
+            steps{
                 sh 'docker build --tag=devops-capstone-app .'
             }
         }
         stage('Push Docker Image'){
-            step{
+            steps{
                 withDockerRegistery([url: "", credentialsId: "dockerhub"]){
                     sh 'docker image tag devops-capstone-app fayax/devops-capstone-app'
                     sh 'docker push fayax/devops-capstone-app'
@@ -25,7 +25,7 @@ pipeline{
             }
         }
         stage('Deploy'){
-            step{
+            steps{
                 withAWS(credentials: 'aws-static', region: 'us-west-2'){
                     sh "aws eks --region us-west-2 update-kubeconfig --name devopscapstonecluster"
                     sh "kubectl config use-context arn:aws:eks:us-west-2:923635882480:cluster/devopscapstonecluster"
@@ -39,7 +39,7 @@ pipeline{
             }
         }
         stage('Clean Up'){
-            step{
+            steps{
                 sh 'docker system prune'
             }
         }
