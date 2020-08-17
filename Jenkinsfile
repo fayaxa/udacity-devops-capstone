@@ -53,12 +53,3 @@ pipeline{
         }
     }
 }
-        post{
-            success{
-                echo 'Jenkins pipeline completed successfully!'
-            }
-            failure{
-                echo 'Jenkins pipeline failed!'
-            }
-        }
-}
