@@ -3,7 +3,7 @@ pipeline{
         dockerHub = 'fayax'
         dockerImage = 'devops-capstone-app'
     }
-    agent{}
+    agent any
     stages{
         stage('Linting'){
             step{
