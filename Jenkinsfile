@@ -8,7 +8,6 @@ pipeline{
         stage('Linting'){
             steps{
                 sh 'hadolint Dockerfile'
-                sh 'pip install -r requirements.txt'
                 sh 'pylint --disable=R,C,W1203 app.py'
             }
         }
