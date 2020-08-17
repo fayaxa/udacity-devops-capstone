@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-capstone-app
+  labels:
+    app: devops-capstone-app
+  namespace: default
+spec:
+  *replicas: 3
+  selector:
+    matchLabels:
+      app: devops-capstone-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: devops-capstone-app
+    spec:
+      containers:
+        - image: fayax/devops-capstone-app
+          imagePullPolicy: Always
+          name: devops-capstone-app
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-capstone-app
+  labels:
+    app: devops-capstone-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: devops-capstone-app
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+      nodePort: 30000
+
+
