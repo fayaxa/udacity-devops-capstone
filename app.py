@@ -8,7 +8,7 @@ def home():
     html = '''
         <title>Casptone Project</title>
         <h1 style="color: grey; text-align: center;">Hello World!</h1>
-        <h2 style="color: grey; text-align: center;">This is Udacity's Devops Nanodegree Capstone Project</h2>
+        <h2 style="color: grey; text-align: center;">This is Udacity's Devops Nanodegree Capstone Project 🚀</h2>
     '''
     return html.format(format)
     
