@@ -11,7 +11,7 @@ COPY . app.py /app/
 ## Step 3:
 # Install packages from requirements.txt
 # hadolint ignore=DL3013
-RUN pip3 install --upgrade pip3 &&\
+RUN pip3 install --upgrade pip &&\
     pip3 install --trusted-host pypi.python.org -r requirements.txt
 
 ## Step 4:
