@@ -21,7 +21,7 @@ pipeline{
         stage('Push Docker Image'){
             steps{
                 echo 'Logging in DockerHub'
-                withDockerRegistery([url: "", credentialsId: "dockerhub"]){
+                withDockerRegistry([url: "", credentialsId: "dockerhub"]){
                     echo 'Success!'
                     sh 'docker image tag devops-capstone-app fayax/devops-capstone-app'
                     sh 'docker push fayax/devops-capstone-app'
