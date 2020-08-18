@@ -7,10 +7,10 @@ pipeline{
     stages{
         stage('Linting'){
             steps{
-                sh 'python --version'
+                sh 'python3 --version'
                 sh 'hadolint Dockerfile'
-                sh 'pip install -r requirements.txt'
-                sh 'pylint --disable=R,C,W1203 app.py'
+                sh 'pip3 install -r requirements.txt'
+                sh 'pylint3 --disable=R,C,W1203 app.py'
             }
         }
         stage('Build Docker Image'){
